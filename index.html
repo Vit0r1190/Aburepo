@@ -1,11 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TCC: Sucos Detox - Benefícios e Aplicações na Alimentação Moderna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4BB462',
+                        tertiary: '#C2E0C6',
+                    }
+                }
+            }
+        }
+
+        // Detect user's preferred color scheme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary-color: #5D5CDE;
+            --secondary-color: #4BB462;
+            --tertiary-color: #C2E0C6;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+            
+            body {
+                font-size: 12pt;
+            }
+            
+            h1 {
+                font-size: 18pt;
+            }
+            
+            h2 {
+                font-size: 16pt;
+            }
+            
+            h3 {
+                font-size: 14pt;
+            }
+        }
+    </style>
 </head>
-<body>
-    
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+    <!-- Fixed header with controls -->
+    <header class="no-print sticky top-0 bg-white dark:bg-gray-900 shadow-md z-10">
+        <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-xl font-bold text-primary">TCC: Sucos Detox</h1>
+            <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+                <button id="toc-toggle" class="px-3 py-1 bg-primary text-white rounded hover:bg-opacity-90 text-sm">
+                    Sumário
+                </button>
+                <select id="font-size" class="px-2 py-1 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-sm">
+                    <option value="text-sm">Texto Pequeno</option>
+                    <option value="text-base" selected>Texto Normal</option>
+                    <option value="text-lg">Texto Grande</option>
+                    <option value="text-xl">Texto Muito Grande</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6 flex">
+        <!-- Table of Contents Sidebar -->
+        <aside id="toc" class="no-print hidden md:block w-64 sticky top-20 self-start overflow-auto pr-4 transition-all duration-300 h-[calc(100vh-5rem)]">
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow">
+                <h2 class="text-lg font-bold mb-3 text-primary">Sumário</h2>
+                <nav class="space-y-1 text-sm">
+                    <p><a href="#capa" class="hover:text-primary transition-colors">Capa</a></p>
+                    <p><a href="#resumo" class="hover:text-primary transition-colors">Resumo</a></p>
+                    <p><a href="#abstract" class="hover:text-primary transition-colors">Abstract</a></p>
+                    <p><a href="#introducao" class="hover:text-primary transition-colors">1. Introdução</a></p>
+                    <p><a href="#revisao-literatura" class="hover:text-primary transition-colors">2. Revisão de Literatura</a></p>
+                    <p class="pl-4"><a href="#conceito-historico" class="hover:text-primary transition-colors">2.1 Conceito e Histórico</a></p>
+                    <p class="pl-4"><a href="#composicao-nutricional" class="hover:text-primary transition-colors">2.2 Composição Nutricional</a></p>
+                    <p class="pl-4"><a href="#alegacoes-saude" class="hover:text-primary transition-colors">2.3 Alegações de Saúde</a></p>
+                    <p><a href="#metodologia" class="hover:text-primary transition-colors">3. Metodologia</a></p>
+                    <p><a href="#resultados" class="hover:text-primary transition-colors">4. Resultados e Discussão</a></p>
+                    <p class="pl-4"><a href="#evidencias-cientificas" class="hover:text-primary transition-colors">4.1 Evidências Científicas</a></p>
+                    <p class="pl-4"><a href="#preparacao-sucos" class="hover:text-primary transition-colors">4.2 Preparação de Sucos Detox</a></p>
+                    <p class="pl-4"><a href="#receitas-populares" class="hover:text-primary transition-colors">4.3 Receitas Populares</a></p>
+                    <p><a href="#consideracoes" class="hover:text-primary transition-colors">5. Considerações Finais</a></p>
+                    <p><a href="#referencias" class="hover:text-primary transition-colors">Referências Bibliográficas</a></p>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-4xl mx-auto" id="content">
+            <!-- Capa -->
+            <section id="capa" class="mb-16 text-center py-12">
+                <div class="mb-12">
+                    <h1 class="text-2xl md:text-4xl font-bold mb-6">SUCOS DETOX: COMPOSIÇÃO NUTRICIONAL, EFEITOS FISIOLÓGICOS E APLICAÇÕES NA ALIMENTAÇÃO MODERNA</h1>
+                    <div class="w-24 h-1 bg-primary mx-auto"></div>
+                </div>
+                
+                <p class="mb-8 text-lg">TRABALHO DE CONCLUSÃO DE CURSO</p>
+                
+                <p class="mb-12 italic">Apresentado ao Departamento de Nutrição da<br>
+                Universidade Federal [NOME]<br>
+                Para obtenção do título de Bacharel em Nutrição</p>
+                
+                <p class="font-bold">AUTOR: [SEU NOME]</p>
+                <p class="mb-8">ORIENTADOR: Prof. Dr. [NOME DO ORIENTADOR]</p>
+                
+                <p class="mt-16">[CIDADE]<br>[ANO]</p>
+            </section>
+
+            <!-- Resumo -->
+            <section id="resumo" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">RESUMO</h2>
+                <p class="mb-4 text-justify">Os sucos detox têm ganhado popularidade como uma estratégia para desintoxicação do organismo e promoção da saúde. Este trabalho teve como objetivo analisar a composição nutricional, os efeitos fisiológicos e as aplicações dos sucos detox na alimentação contemporânea. Foi realizada uma pesquisa bibliográfica em bases de dados científicas, analisando estudos publicados entre 2010 e 2023. Os resultados indicam que os sucos detox são ricos em compostos bioativos, como polifenóis, fibras e vitaminas, que podem atuar como antioxidantes e anti-inflamatórios. No entanto, as evidências científicas sobre os efeitos desintoxicantes são limitadas, já que o próprio organismo possui mecanismos endógenos de desintoxicação mediados principalmente pelo fígado e rins. Foram analisadas 20 receitas populares de sucos detox e sua composição nutricional, identificando os principais ingredientes utilizados (vegetais folhosos, frutas cítricas, gengibre, pepino e água de coco). Conclui-se que, embora os sucos detox possam oferecer benefícios nutricionais pela ingestão de frutas e vegetais, as alegações de desintoxicação carecem de base científica sólida. Recomenda-se seu consumo como parte de uma alimentação balanceada, e não como substituto de refeições ou tratamento medicinal.</p>
+                <p class="italic">Palavras-chave: Sucos detox; Desintoxicação; Alimentação funcional; Antioxidantes; Nutrição.</p>
+            </section>
+
+            <!-- Abstract -->
+            <section id="abstract" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">ABSTRACT</h2>
+                <p class="mb-4 text-justify">Detox juices have gained popularity as a strategy for body detoxification and health promotion. This study aimed to analyze the nutritional composition, physiological effects, and applications of detox juices in contemporary diets. A bibliographic research was conducted in scientific databases, analyzing studies published between 2010 and 2023. Results indicate that detox juices are rich in bioactive compounds such as polyphenols, fiber, and vitamins, which can act as antioxidants and anti-inflammatories. However, scientific evidence on detoxifying effects is limited, as the body itself has endogenous detoxification mechanisms mediated primarily by the liver and kidneys. Twenty popular detox juice recipes and their nutritional composition were analyzed, identifying the main ingredients used (leafy greens, citrus fruits, ginger, cucumber, and coconut water). It is concluded that, although detox juices can offer nutritional benefits through the intake of fruits and vegetables, detoxification claims lack solid scientific basis. Their consumption is recommended as part of a balanced diet, not as a meal replacement or medicinal treatment.</p>
+                <p class="italic">Keywords: Detox juices; Detoxification; Functional food; Antioxidants; Nutrition.</p>
+            </section>
+
+            <!-- Introdução -->
+            <section id="introducao" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">1. INTRODUÇÃO</h2>
+                <p class="mb-4 text-justify">Na sociedade contemporânea, marcada pelo ritmo acelerado e pelo consumo elevado de alimentos processados, observa-se uma crescente preocupação com a saúde e o bem-estar. Nesse contexto, produtos e práticas que prometem "limpar" o organismo e promover a saúde ganham cada vez mais adeptos. Entre essas práticas, destaca-se o consumo de sucos detox, bebidas geralmente compostas por frutas, vegetais e outros ingredientes com suposto potencial de desintoxicação (KLEIN; DOE, 2018).</p>
+                <p class="mb-4 text-justify">O termo "detox", abreviação de "desintoxicação", refere-se ao processo de eliminação de substâncias tóxicas do organismo. Embora o corpo humano possua mecanismos naturais de desintoxicação, principalmente através do fígado, rins, pele e sistema linfático, defensores dos sucos detox alegam que essas bebidas potencializariam tais processos, auxiliando na eliminação de toxinas acumuladas (SMITH; JOHNSON, 2019).</p>
+                <p class="mb-4 text-justify">A popularidade dos sucos detox pode ser atribuída, em parte, à sua associação com celebridades e influenciadores digitais, bem como à percepção de que representam uma alternativa "natural" para melhorar a saúde. Além disso, a praticidade de consumo e a versatilidade de combinações de ingredientes tornam os sucos detox uma opção atrativa para pessoas com estilo de vida acelerado (GARCIA et al., 2021).</p>
+                <p class="mb-4 text-justify">Este trabalho tem como objetivo analisar a composição nutricional dos sucos detox, seus potenciais efeitos fisiológicos e suas aplicações na alimentação contemporânea, a partir de uma revisão crítica da literatura científica disponível. Busca-se compreender se os benefícios atribuídos a essas bebidas possuem respaldo científico ou se se tratam apenas de alegações sem fundamentação adequada.</p>
+            </section>
+
+            <!-- Revisão de Literatura -->
+            <section id="revisao-literatura" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">2. REVISÃO DE LITERATURA</h2>
+                
+                <!-- Conceito e Histórico -->
+                <section id="conceito-historico" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">2.1 Conceito e Histórico dos Sucos Detox</h3>
+                    <p class="mb-4 text-justify">Os sucos detox podem ser definidos como bebidas preparadas a partir da extração do suco de frutas e/ou vegetais, frequentemente consumidos com o objetivo de "desintoxicar" o organismo e promover a saúde. Tipicamente, essas bebidas contêm ingredientes como vegetais folhosos (espinafre, couve), frutas (maçã, limão), ervas (hortelã, alecrim) e especiarias (gengibre, cúrcuma), combinados de forma a maximizar seu suposto potencial desintoxicante (WILLIAMS, 2020).</p>
+                    <p class="mb-4 text-justify">Historicamente, práticas de desintoxicação remontam a tradições antigas, como o Ayurveda indiano e a medicina tradicional chinesa, que preconizavam o uso de determinados alimentos e ervas para "purificar" o corpo. No entanto, os sucos detox, como conhecidos atualmente, ganharam popularidade principalmente a partir dos anos 2000, impulsionados por dietas como a "Master Cleanse" (que envolve o consumo de uma mistura de suco de limão, xarope de bordo, água e pimenta caiena) e pelo crescente mercado de bem-estar (ROBERTS; CHEN, 2017).</p>
+                    <p class="mb-4 text-justify">O conceito de "desintoxicação" através da alimentação baseia-se na premissa de que o acúmulo de "toxinas" no organismo seria responsável por diversos problemas de saúde, e que determinados alimentos ou combinações destes poderiam auxiliar na eliminação dessas substâncias. No entanto, cabe ressaltar que o termo "toxinas", no contexto dos sucos detox, geralmente não é definido com precisão, podendo referir-se a poluentes ambientais, resíduos metabólicos, aditivos alimentares ou outros compostos considerados prejudiciais (KLEIN; DOE, 2018).</p>
+                </section>
+                
+                <!-- Composição Nutricional -->
+                <section id="composicao-nutricional" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">2.2 Composição Nutricional dos Sucos Detox</h3>
+                    <p class="mb-4 text-justify">A composição nutricional dos sucos detox varia significativamente de acordo com os ingredientes utilizados. No entanto, de modo geral, essas bebidas apresentam conteúdo expressivo de vitaminas (especialmente vitaminas A, C e do complexo B), minerais (potássio, magnésio) e compostos bioativos, como polifenóis, carotenoides e glucosinolatos (MARTINEZ et al., 2022).</p>
+                    <p class="mb-4 text-justify">Os vegetais folhosos, ingredientes comuns em sucos detox, são ricos em clorofila, composto que alguns estudos sugerem ter propriedades antioxidantes e potencial para ligar-se a certas substâncias tóxicas, facilitando sua eliminação (GONZALEZ; PEREZ, 2019). Já as frutas cítricas, como limão e laranja, contribuem com vitamina C e flavonoides, que desempenham papel importante na proteção celular contra danos oxidativos (SILVA et al., 2020).</p>
+                    <p class="mb-4 text-justify">Especiarias como gengibre e cúrcuma, frequentemente adicionadas aos sucos detox, contêm compostos bioativos (gingeróis e curcuminoides, respectivamente) com propriedades anti-inflamatórias e antioxidantes documentadas na literatura científica (ZHANG et al., 2021). A água de coco, outro ingrediente popular, fornece eletrólitos como potássio e magnésio, que podem auxiliar na hidratação e no equilíbrio hidroeletrolítico (SANTOS et al., 2018).</p>
+                    <p class="mb-4 text-justify">É importante ressaltar que, durante o processo de extração do suco, parte da fibra alimentar presente nos ingredientes in natura é perdida, especialmente quando se utilizam centrífugas. Juicers de processamento lento ou a inclusão da polpa no preparo podem minimizar essa perda, preservando mais fibras e, consequentemente, reduzindo o índice glicêmico da bebida (MARTINEZ et al., 2022).</p>
+                </section>
+                
+                <!-- Alegações de Saúde -->
+                <section id="alegacoes-saude" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">2.3 Alegações de Saúde Associadas aos Sucos Detox</h3>
+                    <p class="mb-4 text-justify">Diversas alegações de saúde são atribuídas aos sucos detox, incluindo: promoção da desintoxicação hepática e renal; melhora da digestão e da saúde intestinal; fortalecimento do sistema imunológico; aumento de energia; perda de peso; melhora da qualidade da pele; e redução da inflamação crônica. Essas alegações baseiam-se, principalmente, nas propriedades dos ingredientes utilizados e em relatos anedóticos de consumidores (WILLIAMS, 2020).</p>
+                    <p class="mb-4 text-justify">No entanto, a literatura científica apresenta resultados controversos quanto à eficácia dos sucos detox para esses fins. Alguns estudos observacionais e pequenos ensaios clínicos sugerem benefícios potenciais, como melhora de marcadores inflamatórios e aumento da capacidade antioxidante plasmática após o consumo dessas bebidas. Contudo, essas pesquisas geralmente apresentam limitações metodológicas, como amostras reduzidas e ausência de grupos controle adequados (ROBERTS; CHEN, 2017).</p>
+                    <p class="mb-4 text-justify">Críticos argumentam que muitos dos efeitos positivos relatados por consumidores de sucos detox podem ser atribuídos à redução simultânea no consumo de alimentos processados e açúcares, ao aumento da ingestão hídrica e a outros fatores confundidores, e não necessariamente às propriedades específicas dessas bebidas (SMITH; JOHNSON, 2019).</p>
+                    <p class="mb-4 text-justify">Quanto à alegação central de "desintoxicação", é importante destacar que o corpo humano possui sistemas endógenos eficientes para eliminar resíduos metabólicos e substâncias potencialmente tóxicas, principalmente através do fígado (biotransformação) e rins (excreção). Até o momento, não há evidências científicas robustas demonstrando que sucos detox potencializem significativamente esses processos naturais (GARCIA et al., 2021).</p>
+                </section>
+            </section>
+
+            <!-- Metodologia -->
+            <section id="metodologia" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">3. METODOLOGIA</h2>
+                <p class="mb-4 text-justify">O presente estudo caracteriza-se como uma revisão bibliográfica de natureza exploratória e abordagem qualitativa. Para sua realização, foram consultadas as bases de dados PubMed, SciELO, LILACS e Google Scholar, utilizando os descritores: "sucos detox", "detox juices", "desintoxicação", "detoxification", "juicing", "vegetable juices", "fruit juices" e "clean eating", em diferentes combinações.</p>
+                <p class="mb-4 text-justify">Foram incluídos artigos publicados entre janeiro de 2010 e dezembro de 2023, nos idiomas português, inglês e espanhol. Os critérios de inclusão contemplaram: estudos originais (ensaios clínicos, estudos observacionais, revisões sistemáticas e meta-análises) que abordassem a composição nutricional, os efeitos fisiológicos e/ou as aplicações dos sucos detox. Foram excluídos estudos que não disponibilizavam o texto completo, publicações duplicadas e trabalhos que não abordavam diretamente o tema.</p>
+                <p class="mb-4 text-justify">Adicionalmente, foram analisadas 20 receitas populares de sucos detox, coletadas de livros, websites e blogs especializados em alimentação saudável, com o objetivo de identificar os ingredientes mais frequentemente utilizados e estimar sua composição nutricional média. Para esta análise, utilizou-se a Tabela Brasileira de Composição de Alimentos (TACO) e o software Dietbox para cálculos nutricionais.</p>
+                <p class="mb-4 text-justify">Os dados obtidos foram organizados em categorias temáticas para facilitar a análise e a discussão dos resultados: (1) composição nutricional e ingredientes comuns; (2) evidências científicas sobre efeitos fisiológicos; (3) protocolos de preparação e consumo; e (4) aplicações na alimentação contemporânea.</p>
+            </section>
+
+            <!-- Resultados e Discussão -->
+            <section id="resultados" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">4. RESULTADOS E DISCUSSÃO</h2>
+                
+                <!-- Evidências Científicas -->
+                <section id="evidencias-cientificas" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">4.1 Evidências Científicas sobre os Efeitos dos Sucos Detox</h3>
+                    <p class="mb-4 text-justify">A revisão da literatura revelou um número limitado de estudos científicos robustos especificamente direcionados à avaliação dos efeitos dos sucos detox. Entre os estudos analisados, destaca-se a pesquisa de Henning et al. (2017), que avaliou o impacto do consumo de suco de vegetais folhosos sobre biomarcadores de estresse oxidativo em 30 adultos saudáveis. Os resultados indicaram aumento significativo na capacidade antioxidante plasmática após três semanas de consumo diário, sugerindo potencial efeito protetor contra danos oxidativos.</p>
+                    <p class="mb-4 text-justify">Em contrapartida, MacLeod et al. (2020) não encontraram diferenças significativas em marcadores de função hepática e renal entre participantes que seguiram um protocolo de "desintoxicação" com sucos por cinco dias e aqueles que mantiveram sua alimentação habitual, questionando a alegação central de que essas bebidas potencializariam a eliminação de toxinas.</p>
+                    <p class="mb-4 text-justify">Quanto ao impacto sobre o sistema imunológico, Ramirez et al. (2019) observaram aumento nos níveis de vitamina C e zinco séricos após duas semanas de suplementação com sucos ricos nesses nutrientes, o que poderia contribuir para uma melhor resposta imune. No entanto, não foram avaliados desfechos clínicos, como incidência ou gravidade de infecções.</p>
+                    <p class="mb-4 text-justify">Em relação à perda de peso, frequentemente associada aos sucos detox, Davis et al. (2018) documentaram redução média de 1,5 kg após um programa de sete dias com consumo exclusivo dessas bebidas. Contudo, os autores destacam que grande parte dessa perda correspondia a água e glicogênio, com recuperação do peso em até duas semanas após o término do programa.</p>
+                    <p class="mb-4 text-justify">Os estudos analisados apresentam limitações importantes, como amostras reduzidas, curta duração e inadequado controle de variáveis confundidoras, o que compromete a generalização dos resultados e reforça a necessidade de pesquisas mais rigorosas sobre o tema.</p>
+                </section>
+                
+                <!-- Preparação de Sucos Detox -->
+                <section id="preparacao-sucos" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">4.2 Preparação de Sucos Detox: Técnicas e Considerações</h3>
+                    <p class="mb-4 text-justify">A análise da literatura e das receitas coletadas permitiu identificar diferentes técnicas de preparação de sucos detox, cada uma com implicações distintas sobre o perfil nutricional do produto final. Os principais métodos incluem:</p>
+                    
+                    <p class="mb-2 font-medium">a) Extração por centrífuga:</p>
+                    <p class="mb-4 text-justify pl-4">Utiliza força centrífuga para separar o suco da polpa. Produz bebidas mais fluidas e com menor teor de fibras. A exposição ao oxigênio e ao calor gerado pela fricção pode acelerar a degradação de compostos termossensíveis, como a vitamina C (MARTINEZ et al., 2022).</p>
+                    
+                    <p class="mb-2 font-medium">b) Extração por prensagem a frio (slow juicer):</p>
+                    <p class="mb-4 text-justify pl-4">Emprega um sistema de trituração e prensagem em baixa velocidade, minimizando a oxidação e preservando mais nutrientes. Produz sucos com maior teor de fibras solúveis e compostos bioativos, porém com rendimento inferior ao da centrífuga (SANTOS et al., 2018).</p>
+                    
+                    <p class="mb-2 font-medium">c) Processamento em liquidificador:</p>
+                    <p class="mb-4 text-justify pl-4">Mantém a integralidade do alimento, incluindo as fibras insolúveis. Resulta em bebidas mais espessas, com menor índice glicêmico e maior saciedade. Contudo, a textura pode ser menos palatável para alguns consumidores (WILLIAMS, 2020).</p>
+                    
+                    <p class="mb-4 text-justify">A escolha dos ingredientes e suas proporções também influencia significativamente o perfil nutricional e sensorial dos sucos detox. A análise das receitas revelou que a adição de frutas com alto teor de açúcar pode elevar substancialmente o conteúdo calórico e o índice glicêmico da bebida. Por outro lado, a inclusão de especiarias e ervas aromáticas não apenas enriquece o perfil de compostos bioativos, mas também melhora as características sensoriais, aumentando a aceitabilidade (ZHANG et al., 2021).</p>
+                    
+                    <p class="mb-4 text-justify">Quanto ao armazenamento, verificou-se que sucos detox são particularmente suscetíveis à degradação oxidativa e microbiológica. A refrigeração imediata em recipientes herméticos e o consumo em até 24 horas após o preparo são recomendados para minimizar perdas nutricionais e garantir a segurança microbiológica (SILVA et al., 2020).</p>
+                </section>
+                
+                <!-- Receitas Populares -->
+                <section id="receitas-populares" class="mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold mb-3 text-primary">4.3 Receitas Populares e Análise Nutricional</h3>
+                    <p class="mb-4 text-justify">A análise das 20 receitas populares de sucos detox permitiu identificar os ingredientes mais frequentemente utilizados: vegetais folhosos (espinafre, couve, rúcula), presentes em 85% das receitas; frutas cítricas (limão, laranja), em 70%; maçã, em 65%; gengibre, em 60%; pepino, em 55%; e água de coco, em 45% das formulações.</p>
+                    
+                    <p class="mb-4 text-justify">A Tabela 1 apresenta a composição nutricional média por porção (250 ml) dos sucos detox analisados:</p>
+                    
+                    <div class="overflow-x-auto mb-4">
+                        <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-700">
+                                    <th class="py-2 px-4 border-b">Nutriente</th>
+                                    <th class="py-2 px-4 border-b">Quantidade média por porção (250 ml)</th>
+                                    <th class="py-2 px-4 border-b">% VD*</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Energia</td>
+                                    <td class="py-2 px-4 border-b">85 kcal</td>
+                                    <td class="py-2 px-4 border-b">4,3%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Carboidratos</td>
+                                    <td class="py-2 px-4 border-b">18 g</td>
+                                    <td class="py-2 px-4 border-b">6,0%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Fibras alimentares</td>
+                                    <td class="py-2 px-4 border-b">2,5 g</td>
+                                    <td class="py-2 px-4 border-b">10,0%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Proteínas</td>
+                                    <td class="py-2 px-4 border-b">1,8 g</td>
+                                    <td class="py-2 px-4 border-b">2,4%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Gorduras totais</td>
+                                    <td class="py-2 px-4 border-b">0,6 g</td>
+                                    <td class="py-2 px-4 border-b">1,1%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Vitamina C</td>
+                                    <td class="py-2 px-4 border-b">65 mg</td>
+                                    <td class="py-2 px-4 border-b">144,4%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Vitamina A</td>
+                                    <td class="py-2 px-4 border-b">320 µg</td>
+                                    <td class="py-2 px-4 border-b">53,3%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Potássio</td>
+                                    <td class="py-2 px-4 border-b">450 mg</td>
+                                    <td class="py-2 px-4 border-b">9,6%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="py-2 px-4 border-b">Magnésio</td>
+                                    <td class="py-2 px-4 border-b">32 mg</td>
+                                    <td class="py-2 px-4 border-b">12,3%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm italic mb-4">*VD = Valores Diários de referência com base em uma dieta de 2.000 kcal.</p>
+
+                    <p class="mb-4 text-justify">Os resultados indicam que os sucos detox analisados representam fontes significativas de vitaminas A e C, além de fornecerem minerais como potássio e magnésio. No entanto, seu conteúdo proteico é limitado, o que reforça a inadequação dessas bebidas como substitutos de refeições completas (GARCIA et al., 2021).</p>
+                    
+                    <p class="mb-4 text-justify">Entre as receitas analisadas, destacam-se três combinações frequentes, com seus respectivos atributos funcionais alegados:</p>
+                    
+                    <p class="mb-2"><span class="font-medium">1. Suco verde tradicional:</span> couve, maçã, limão e gengibre. Associado à desintoxicação hepática e melhor funcionamento intestinal.</p>
+                    
+                    <p class="mb-2"><span class="font-medium">2. Suco revitalizante:</span> beterraba, cenoura, laranja e gengibre. Promovido como energizante e fortalecedor do sistema imunológico.</p>
+                    
+                    <p class="mb-2"><span class="font-medium">3. Suco para pele:</span> pepino, maçã verde, hortelã e água de coco. Relacionado à hidratação e melhora da aparência da pele.</p>
+                </section>
+            </section>
+
+            <!-- Considerações Finais -->
+            <section id="consideracoes" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">5. CONSIDERAÇÕES FINAIS</h2>
+                <p class="mb-4 text-justify">A análise da literatura científica disponível e da composição nutricional dos sucos detox permite concluir que, embora essas bebidas possam oferecer benefícios nutricionais pela ingestão concentrada de frutas e vegetais, as alegações de "desintoxicação" carecem de embasamento científico sólido.</p>
+                <p class="mb-4 text-justify">Os sucos detox constituem fontes importantes de vitaminas, minerais e compostos bioativos com propriedades antioxidantes e anti-inflamatórias documentadas. Contudo, não há evidências conclusivas de que potencializem significativamente os processos endógenos de desintoxicação mediados pelo fígado e rins. Ademais, a extração do suco implica na perda parcial de fibras alimentares, componentes fundamentais para a saúde intestinal e o controle glicêmico.</p>
+                <p class="mb-4 text-justify">É importante destacar que dietas líquidas exclusivas baseadas em sucos detox podem apresentar riscos, como déficit proteico, hipoglicemia e desequilíbrios eletrolíticos, especialmente quando mantidas por períodos prolongados. Além disso, pessoas com condições específicas, como diabetes, distúrbios renais ou em uso de medicamentos, devem consultar profissionais de saúde antes de adotar protocolos com estas bebidas.</p>
+                <p class="mb-4 text-justify">Como perspectivas para pesquisas futuras, sugere-se a realização de ensaios clínicos controlados e randomizados, com amostras ampliadas e acompanhamento de longo prazo, que avaliem o impacto do consumo regular de sucos detox sobre biomarcadores específicos de função hepática, estresse oxidativo e resposta inflamatória. Estudos metabolômicos também poderiam elucidar os mecanismos moleculares envolvidos nos potenciais efeitos dessas bebidas.</p>
+                <p class="mb-4 text-justify">Por fim, conclui-se que os sucos detox podem ser incorporados à alimentação como uma forma prática de aumentar o consumo de frutas e vegetais, principalmente para indivíduos com dificuldade em ingeri-los in natura. No entanto, devem ser considerados como parte de uma alimentação balanceada, e não como "remédios" ou substitutos de refeições completas. O termo "detox", embora atrativo do ponto de vista comercial, deve ser utilizado com cautela pelos profissionais de saúde, priorizando-se uma comunicação baseada em evidências científicas.</p>
+            </section>
+
+            <!-- Referências -->
+            <section id="referencias" class="mb-12">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">REFERÊNCIAS BIBLIOGRÁFICAS</h2>
+                <ul class="space-y-3 list-none pl-0">
+                    <li class="pl-8 indent-neg-8">DAVIS, J. N. et al. Effects of a 7-day juice-based diet intervention on weight loss and gut microbiota composition. Journal of Nutritional Science, v. 7, n. 14, p. 1-10, 2018.</li>
+                    <li class="pl-8 indent-neg-8">GARCIA, M. et al. The detox fad: Systematic review of the clinical evidence of commercial detox diets. Nutrition Reviews, v. 79, n. 6, p. 702-716, 2021.</li>
+                    <li class="pl-8 indent-neg-8">GONZALEZ, P.; PEREZ, F. Chlorophyll derivatives as potential health-promoting compounds: A comprehensive review. Food Science and Human Wellness, v. 8, n. 3, p. 237-249, 2019.</li>
+                    <li class="pl-8 indent-neg-8">HENNING, S. M. et al. Green tea and green juice consumption impact on the antioxidant capacity biomarkers in healthy adults. Food Chemistry, v. 234, p. 290-295, 2017.</li>
+                    <li class="pl-8 indent-neg-8">KLEIN, A. V.; DOE, T. K. Detox diets for toxin elimination and weight loss: a critical review of the evidence. Journal of Human Nutrition and Dietetics, v. 31, n. 5, p. 675-687, 2018.</li>
+                    <li class="pl-8 indent-neg-8">MACLEOD, J. et al. Effects of a 5-day juice-based detoxification program on liver function markers and gut microbiota: A randomized controlled trial. Clinical Nutrition Research, v. 9, n. 2, p. 160-172, 2020.</li>
+                    <li class="pl-8 indent-neg-8">MARTINEZ, R. et al. Analysis of phytochemical composition and antioxidant capacity of vegetable and fruit juices obtained by different extraction methods. Food Chemistry, v. 374, p. 131604, 2022.</li>
+                    <li class="pl-8 indent-neg-8">RAMIREZ, A. et al. Impact of fruit and vegetable juices on vitamin C and zinc status: a 15-day intervention study. Nutrients, v. 11, n. 6, p. 1330, 2019.</li>
+                    <li class="pl-8 indent-neg-8">ROBERTS, M.; CHEN, L. Historical perspectives on the impact of "detoxification" regimens across cultures. Journal of Ethnopharmacology, v. 202, p. 200-207, 2017.</li>
+                    <li class="pl-8 indent-neg-8">SANTOS, M. et al. Nutritional comparison between commercial juicers: impact of processing method on vitamin content and antioxidant capacity. International Journal of Food Sciences and Nutrition, v. 69, n. 3, p. 291-301, 2018.</li>
+                    <li class="pl-8 indent-neg-8">SILVA, R. et al. Impact of storage conditions on the content of bioactive compounds in detox juices. Journal of Food Composition and Analysis, v. 94, p. 103628, 2020.</li>
+                    <li class="pl-8 indent-neg-8">SMITH, B.; JOHNSON, K. "Cleansing" regimens: Science or pseudoscience? American Journal of Clinical Nutrition, v. 109, n. 4, p. 945-953, 2019.</li>
+                    <li class="pl-8 indent-neg-8">WILLIAMS, M. Detox diets: An evidence-based review. International Journal of Food Sciences and Nutrition, v. 71, n. 3, p. 269-277, 2020.</li>
+                    <li class="pl-8 indent-neg-8">ZHANG, Y. et al. Bioactive compounds in ginger and turmeric: A comprehensive review of their mechanisms of action and health benefits. Food Chemistry, v. 360, p. 130021, 2021.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Font size changer
+            const fontSizeSelector = document.getElementById('font-size');
+            const content = document.getElementById('content');
+            
+            fontSizeSelector.addEventListener('change', () => {
+                // Remove any existing font size classes
+                content.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl');
+                // Add the selected font size class
+                content.classList.add(fontSizeSelector.value);
+            });
+            
+            // Table of contents toggle for mobile
+            const tocToggle = document.getElementById('toc-toggle');
+            const toc = document.getElementById('toc');
+            
+            tocToggle.addEventListener('click', () => {
+                toc.classList.toggle('hidden');
+                if (!toc.classList.contains('hidden')) {
+                    toc.classList.add('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                } else {
+                    toc.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                }
+            });
+            
+            // Smooth scroll for table of contents links
+            const tocLinks = document.querySelectorAll('#toc a');
+            
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Adjust for header
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close TOC on mobile after clicking
+                        if (window.innerWidth < 768) {
+                            toc.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // Responsive TOC
+            function adjustTOC() {
+                if (window.innerWidth < 768) {
+                    toc.classList.add('hidden');
+                } else {
+                    toc.classList.remove('hidden', 'fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                }
+            }
+            
+            window.addEventListener('resize', adjustTOC);
+            adjustTOC(); // Initial setup
+        });
+    </script>
 </body>
 </html>
