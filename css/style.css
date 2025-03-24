@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #5D5CDE;
+    --secondary-color: #4BB462;
+    --tertiary-color: #C2E0C6;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+}
+
+/* Imagens de sucos */
+.juice-image {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Estilo para referências bibliográficas */
+.pl-8 {
+    padding-left: 2rem;
+}
+
+.indent-neg-8 {
+    text-indent: -2rem;
+}
+
+/* Cartões de receitas */
+.bg-gray-50 {
+    background-color: #F9FAFB;
+}
+
+.dark .bg-gray-800 {
+    background-color: #1F2937;
+}
+
+/* Aviso no final das receitas */
+.bg-blue-50 {
+    background-color: #EFF6FF;
+}
+
+.dark .bg-blue-900\/30 {
+    background-color: rgba(30, 58, 138, 0.3);
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    h1 {
+        font-size: 18pt;
+    }
+    
+    h2 {
+        font-size: 16pt;
+    }
+    
+    h3 {
+        font-size: 14pt;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .juice-image {
+        max-height: 120px;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+    
+    .grid {
+        display: block;
+    }
+    
+    .bg-gray-50, .dark .bg-gray-800 {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .juice-image {
+        height: 140px;
+    }
+    
+    .grid-cols-1 > div {
+        margin-bottom: 1.5rem;
+    }
+}
