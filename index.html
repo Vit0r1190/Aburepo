@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCC: Sucos Detox - Benefícios e Aplicações na Alimentação Moderna</title>
-    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -481,7 +480,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Font size changer
+            // Font size changer com transição suave
             const fontSizeSelector = document.getElementById('font-size');
             const content = document.getElementById('content');
             
@@ -492,16 +491,35 @@
                 content.classList.add(fontSizeSelector.value);
             });
             
-            // Table of contents toggle for mobile
+            // Table of contents toggle for mobile com transição melhorada
             const tocToggle = document.getElementById('toc-toggle');
             const toc = document.getElementById('toc');
             
             tocToggle.addEventListener('click', () => {
-                toc.classList.toggle('hidden');
-                if (!toc.classList.contains('hidden')) {
-                    toc.classList.add('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                // Primeiro, adicionamos ou removemos a classe 'hidden', que controla a visibilidade
+                if (toc.classList.contains('hidden')) {
+                    // Se estava escondido, primeiro tornamos visível mas com opacidade 0
+                    toc.classList.remove('hidden');
+                    toc.classList.add('mobile-hidden');
+                    
+                    // Permitimos que o DOM atualize antes de iniciar a transição
+                    setTimeout(() => {
+                        // Configurar posicionamento para mobile
+                        toc.classList.add('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                        // Iniciar animação de aparecimento
+                        toc.classList.remove('mobile-hidden');
+                        toc.classList.add('mobile-visible');
+                    }, 10); // Pequeno delay para garantir que o DOM atualize
                 } else {
-                    toc.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                    // Se estava visível, primeiro animamos para opacidade 0
+                    toc.classList.remove('mobile-visible');
+                    toc.classList.add('mobile-hidden');
+                    
+                    // Depois que a transição terminar, escondemos completamente
+                    setTimeout(() => {
+                        toc.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg', 'mobile-hidden');
+                        toc.classList.add('hidden');
+                    }, 2000); // Espera a transição de 2s terminar
                 }
             });
             
@@ -515,25 +533,65 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Adjust for header
-                            behavior: 'smooth'
-                        });
+                        // Rolagem suave com duração de 2 segundos (2000ms)
+                        const startPosition = window.scrollY;
+                        const targetPosition = targetElement.offsetTop - 80; // Ajusta para o cabeçalho
+                        const distance = targetPosition - startPosition;
+                        const startTime = performance.now();
+                        const duration = 2000; // 2 segundos
+                        
+                        function scrollAnimation(currentTime) {
+                            const elapsedTime = currentTime - startTime;
+                            if (elapsedTime < duration) {
+                                // Função de easing para suavidade
+                                const progress = easeInOutCubic(elapsedTime / duration);
+                                window.scrollTo(0, startPosition + distance * progress);
+                                requestAnimationFrame(scrollAnimation);
+                            } else {
+                                window.scrollTo(0, targetPosition);
+                            }
+                        }
+                        
+                        // Função de easing para suavizar a aceleração/desaceleração
+                        function easeInOutCubic(t) {
+                            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                        }
+                        
+                        requestAnimationFrame(scrollAnimation);
                         
                         // Close TOC on mobile after clicking
                         if (window.innerWidth < 768) {
-                            toc.classList.add('hidden');
+                            // Inicia a transição de fechamento
+                            toc.classList.remove('mobile-visible');
+                            toc.classList.add('mobile-hidden');
+                            
+                            // Esconde completamente após a transição
+                            setTimeout(() => {
+                                toc.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg', 'mobile-hidden');
+                                toc.classList.add('hidden');
+                            }, 2000); // Espera a transição de 2s terminar
                         }
                     }
                 });
             });
             
-            // Responsive TOC
+            // Responsive TOC com transições
             function adjustTOC() {
                 if (window.innerWidth < 768) {
-                    toc.classList.add('hidden');
+                    // Em telas pequenas, esconde o TOC com transição se estiver visível
+                    if (!toc.classList.contains('hidden')) {
+                        // Apenas se estiver visível, fazemos a transição de saída
+                        toc.classList.remove('mobile-visible');
+                        toc.classList.add('mobile-hidden');
+                        
+                        setTimeout(() => {
+                            toc.classList.remove('fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg', 'mobile-hidden');
+                            toc.classList.add('hidden');
+                        }, 2000);
+                    }
                 } else {
-                    toc.classList.remove('hidden', 'fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg');
+                    // Em telas maiores, garantimos que o TOC esteja visível corretamente
+                    toc.classList.remove('hidden', 'fixed', 'top-16', 'left-0', 'right-0', 'z-20', 'bg-white', 'dark:bg-gray-900', 'p-4', 'shadow-lg', 'mobile-hidden', 'mobile-visible');
                 }
             }
             

@@ -4,14 +4,47 @@
     --primary-color: #5D5CDE;
     --secondary-color: #4BB462;
     --tertiary-color: #C2E0C6;
+    --transition-duration: 2s;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
+    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', serif;
+}
+
+/* Transições para todos os elementos */
+* {
+    transition: background-color var(--transition-duration) ease, 
+                color var(--transition-duration) ease,
+                border-color var(--transition-duration) ease;
+}
+
+/* Transição para o conteúdo principal */
+#content {
+    transition: font-size var(--transition-duration) ease;
+}
+
+/* Transição para o sumário */
+#toc {
+    transition: opacity var(--transition-duration) ease,
+                transform var(--transition-duration) ease,
+                left var(--transition-duration) ease,
+                right var(--transition-duration) ease,
+                top var(--transition-duration) ease;
+}
+
+#toc.mobile-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#toc.mobile-hidden {
+    opacity: 0;
+    transform: translateY(-20px);
 }
 
 /* Imagens de sucos */
@@ -20,6 +53,15 @@ h1, h2, h3, h4, h5, h6 {
     height: 160px;
     border-radius: 8px;
     overflow: hidden;
+}
+
+/* Transições para cards e elementos interativos */
+.bg-gray-50, .dark .bg-gray-800, button, select, a {
+    transition: all var(--transition-duration) ease;
+}
+
+button:hover, a:hover {
+    transition-duration: 0.3s; /* Mantém hover mais rápido para melhor feedback */
 }
 
 /* Estilo para referências bibliográficas */
@@ -47,6 +89,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark .bg-blue-900\/30 {
     background-color: rgba(30, 58, 138, 0.3);
+}
+
+/* Animação para tabelas e gráficos */
+table {
+    transition: background-color var(--transition-duration) ease, 
+                border-color var(--transition-duration) ease;
+}
+
+table th, table td {
+    transition: background-color var(--transition-duration) ease, 
+                border-color var(--transition-duration) ease;
 }
 
 /* Print styles */
